@@ -25,7 +25,7 @@ const Restaurant = () => {
   }
   return (
     <>
-      <Menu categories={categories} filterItem={filterItem} setApiData={setApiData} apiData={apiData}/>
+      <Menu categories={categories} filterItem={filterItem} setApiData={setApiData} apiData={apiData} setActiveCategory={setActiveCategory}/>
 
       <Items apiData={data} activeCategory={activeCategory}/>
     </>

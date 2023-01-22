@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Menu = ({categories,filterItem,setApiData,apiData}) => {
+const Menu = ({categories,filterItem,setApiData,apiData,setActiveCategory}) => {
     return (
         <>
         <div className="container text-center">
@@ -16,7 +16,9 @@ const Menu = ({categories,filterItem,setApiData,apiData}) => {
             })
           }
 
-          <button type="button" className="btn btn-secondary" onClick={() => setApiData(apiData)}>All</button>
+          <button type="button" className="btn btn-secondary" onClick={() =>             
+            setApiData(apiData)
+            }>All</button>
         </div>
       </div>
         </>
