@@ -5,13 +5,13 @@ import Menu from "./Menu";
 console.log(apiData);
 const Restaurant = () => {
   const [data, setApiData] = useState(apiData);
-  const [activeCategory,setActiveCategory] = useState("");
+  const [activeCategory, setActiveCategory] = useState("");
   // Get Unique Category Name From API Data
   let uniqueRecord = [...new Set(
     apiData.map((currELe) => {
       return currELe.category;
     }))]
-   const [categories, setCategory] = useState(uniqueRecord);
+  const [categories, setCategory] = useState(uniqueRecord);
 
   // Get Items From Category Wise
   const filterItem = (category) => {
@@ -25,9 +25,8 @@ const Restaurant = () => {
   }
   return (
     <>
-      <Menu categories={categories} filterItem={filterItem} setApiData={setApiData} apiData={apiData} setActiveCategory={setActiveCategory}/>
-
-      <Items apiData={data} activeCategory={activeCategory}/>
+      <Menu categories={categories} filterItem={filterItem} setApiData={setApiData} apiData={apiData} setActiveCategory={setActiveCategory} />
+      <Items apiData={data} activeCategory={activeCategory} />
     </>
   );
 };
