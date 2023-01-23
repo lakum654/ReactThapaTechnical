@@ -24,8 +24,8 @@ const Items = ({apiData,activeCategory}) => {
                     <p className="card-text">
                       {description.substr(0,100)}
                     </p>
-                    <a href="#" className="btn btn-primary">
-                      View more...
+                    <a href="#" className="btn btn-info rounded-5">
+                      {id}
                     </a>
                   </div>
                 </div>
