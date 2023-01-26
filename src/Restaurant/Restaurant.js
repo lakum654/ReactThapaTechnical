@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Footer from "../Footer";
 import apiData from "./apiData";
 import Items from "./Items";
 import Menu from "./Menu";
@@ -27,6 +28,8 @@ const Restaurant = () => {
     <>
       <Menu categories={categories} filterItem={filterItem} setApiData={setApiData} apiData={apiData} setActiveCategory={setActiveCategory} />
       <Items apiData={data} activeCategory={activeCategory} />
+       <br />
+      <Footer />
     </>
   );
 };
