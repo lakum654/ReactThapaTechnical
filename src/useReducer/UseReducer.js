@@ -1,10 +1,11 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer } from 'react'
+import Footer from '../Footer';
 
 
 const reducer = (state,action) => {
-    if(action.type == 'INCREMENT') {
+    if(action.type === 'INCREMENT') {
         state++;
-    } else if(state > 0 && action.type == "DECREMENT") {
+    } else if(state > 0 && action.type === "DECREMENT") {
          state--;
     } else {
         return state;
@@ -36,6 +37,8 @@ function UseReducer() {
             </div>
 
         </div>
+
+        <Footer />
     </>
   )
 }

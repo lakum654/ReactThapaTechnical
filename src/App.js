@@ -19,16 +19,19 @@ const App = () => {
   )
 }
 
+
 const Index = () => {
   return (
     <div className="container">
-      <h1 className="text-center">Welcome to React Mini Projects List</h1>
+      <h1 className="text-center">
+        🏡 Welcome to React Mini Projects List 🏠
+      </h1>
 
       <ul class="list-group">
-        <li class="list-group-item"><Link to="/resturant" className="nav-link text-orange">1. Restaurant Menu</Link></li>
-        <li class="list-group-item"><Link to="/useState" className="nav-link text-orange">2. Use State & Use Effect</Link></li>
-        <li class="list-group-item"><Link to="/useReducer" className="nav-link text-orange">3. Use Reducer</Link></li>
-        <li class="list-group-item"><Link to="/toDoList" className="nav-link text-orange">4. To Do List</Link></li>
+        <li class="list-group-item"><Link to="/resturant" className="nav-link text-orange">1. Restaurant Menu 😄</Link></li>
+        <li class="list-group-item"><Link to="/useState" className="nav-link text-orange">2. Use State & Use Effect 😀</Link></li>
+        <li class="list-group-item"><Link to="/useReducer" className="nav-link text-orange">3. Use Reducer 😀</Link></li>
+        <li class="list-group-item"><Link to="/toDoList" className="nav-link text-orange">4. To Do List 😇</Link></li>
       </ul>
     </div>
 

@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div>
-      <footer class="text-center text-lg-start bg-light text-muted">
+    <>
+      <footer class="text-center text-lg-start bg-light text-muted mt-5">
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
           <div class="me-5 d-none d-lg-block">
             <span>Get connected with us on social networks:</span>
@@ -116,7 +116,9 @@ const Footer = () => {
           </a>
         </div>
       </footer>
-    </div>
+    </>
+    
+
   );
 };
 

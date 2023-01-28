@@ -11,7 +11,7 @@ const Menu = ({ categories, filterItem, setApiData, apiData, setActiveCategory }
   return (
     <>
       <div className="container text-center">
-        <h2 className="text-danger text-center">Welcome to Resturant</h2>
+        <h2 className="text-danger text-center">😛 Welcome to Resturant 😛</h2>
         <div className="btn-group w-100" role="group" aria-label="Basic example">
           {
             categories.map((category, key) => {
