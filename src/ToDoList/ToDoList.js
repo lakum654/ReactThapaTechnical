@@ -1,22 +1,38 @@
-import React, { useEffect, useState } from "react";
-import Footer from "../Footer";
+ import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
+//kindacode.com/article/top-react-form-validation-libraries/#react-hook-form
 const ToDoList = () => {
-  const [form, setItem] = useState({item:'',id:1})
-  // const [list,setList] = useState([]);
   const [savedData,setSaveData] = useState([]);
-
+  const { register, handleSubmit,resetField, formState: { errors } } = useForm({ defaultValues: { item:'' } });;
   useEffect(() => {
     if(localStorage.getItem('item') != null) {
       setSaveData(JSON.parse(localStorage.getItem('item')));
     }
   }, [])
   
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    localStorage.setItem('item',JSON.stringify([form,...savedData]))
+  // Save Data In Local Storage
+  const onSubmit = (formData) => {
+    // Set ID For Unique Record
+    formData['id'] = (savedData.length+1);
+    // Set New Data With Old Data In Local Storage
+    localStorage.setItem('item',JSON.stringify([formData,...savedData]))
+    //Set In State For Display Purpose
     setSaveData(JSON.parse(localStorage.getItem('item')));
-    setItem({item:''})
+    // Reset Item Name Field
+    resetField('item');
+   }
+
+  //  Delete Items From LocalStorage
+   const destroy = (id) => {
+      const newItems = savedData.filter((item,key) => {
+            return item.id !== id;
+      })
+
+      // Reset and SAVE Delete Items Back LocalStorage 
+      localStorage.setItem('item',JSON.stringify(newItems))
+      // Reset Back New Data In State
+      setSaveData(JSON.parse(localStorage.getItem('item')));
    }
   return (
     <>
@@ -24,15 +40,14 @@ const ToDoList = () => {
         <h1 className="text-center">✍️ To Do List Example ✍️</h1>
         <div className="d-flex align-items-center justify-content-center">
           <div className="main-section w-75">
-            <form className="d-flex flex-nowrap m-3" onSubmit={handleSubmit}>
+            <form className="d-flex flex-nowrap m-3" onSubmit={handleSubmit(onSubmit)}>
               <input
                 type="text"
                 id="item"
                 name="name"
-                className="form-control rounded-0"
-                placeholder="Enter Your Item."
-                value={form['item']}
-                onChange={(e) => setItem({id:parseInt(savedData.length)+1,item:e.target.value})}
+                className={errors.item ? "form-control rounded-0 border-1 border-danger" : "form-control rounded-0"}
+                placeholder={errors.item ? `Enter Name Is Required..` : `Enter Your Item.`}
+                {...register("item", { required: true})}
               />
               <button type="submit"
                 className="btn rounded-0 btn-success m-1"
@@ -46,10 +61,10 @@ const ToDoList = () => {
                 savedData.map((item,key) => {
                    return (
                     <li className="list-group-item d-flex justify-content-between align-items-center" key={key}>
-                    {key+1}.{item.item}
+                    {item.id}.{item.item}
                     <div className="d-flex justify-content-between align-items-center">
-                        <i className="fas fa-edit m-2" style={{cursor:'pointer'}}></i>
-                        <i className="fas fa-trash" style={{cursor:'pointer'}}></i>
+                        {/* <i className="fas fa-edit m-2" style={{cursor:'pointer'}}></i> */}
+                        <i className="fas fa-trash" style={{cursor:'pointer'}} onClick={() => destroy(item.id)}></i>
                     </div>
                   </li>
                    );
