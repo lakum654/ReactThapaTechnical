@@ -1,5 +1,7 @@
  import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 //kindacode.com/article/top-react-form-validation-libraries/#react-hook-form
 const ToDoList = () => {
