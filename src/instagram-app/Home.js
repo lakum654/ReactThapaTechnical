@@ -1,9 +1,10 @@
-import React from 'react'
-    
+import React, { useState } from 'react'
+
 const Home = () => {
+    const [Auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
     return (
         <div>
-            Home
+            Welcome {Auth.firstname} {Auth.lastname}
         </div>
     )
 }

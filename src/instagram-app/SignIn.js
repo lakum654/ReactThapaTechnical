@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 const SignIn = () => {    
     const { register,handleSubmit,formState: {errors}} = useForm();   
+    const [Auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
+    const [error, setError] = useState("");
+    const redirect = useNavigate();
+    
     const onSubmit = (inputs) => {
-        console.table(inputs);       
+        if(inputs['username'] === Auth['email'] && inputs['password'] === Auth['password']) {
+            setError('');
+            redirect('/instagram/home');
+        } else {
+            setError('Username or Password are wrong..');
+        }
     }
 
-    
-    
+    useEffect(() => {
+        setTimeout(() => {
+            setError('');
+        },3000)
+    }, [onSubmit])
     return (
-    <>                                
+    <>                                        
         <div id="wrapper">
         <div className="main-content">
             <div className="header">
@@ -30,6 +42,15 @@ const SignIn = () => {
             </form>
             </div>
         </div>
+
+
+        {
+            error && 
+            <div className="sub-content text-danger">
+                {error}                
+            </div>
+        }
+
         <div className="sub-content">
             <div className="s-part">
             Don't have an account ?<Link to="/instagram/signUp">Sign up</Link>

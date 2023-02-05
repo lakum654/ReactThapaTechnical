@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 const SignUp = () => {    
     const { register,handleSubmit,formState: {errors}} = useForm(); 
-    
     const redirect = useNavigate();
+    
     const onSubmit = (inputs) => {
         localStorage.setItem('auth',JSON.stringify(inputs));      
         console.log(inputs)  

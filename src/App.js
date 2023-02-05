@@ -1,11 +1,11 @@
 import Restaurant from "./Restaurant/Restaurant"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
-import Footer from "./Footer"
 import UseState from "./useState/UseState"
 import UseReducer from "./useReducer/UseReducer"
 import ToDoList from "./ToDoList/ToDoList"
 import SignIn from "./instagram-app/SignIn";
 import SignUp from "./instagram-app/SignUp";
+import Home from "./instagram-app/Home";
 
 
 
@@ -20,7 +20,8 @@ const App = () => {
         <Route path="useReducer" element={<UseReducer />} />
         <Route path="toDoList" element={<ToDoList />} />
         <Route path="instagram/signIn" element={<SignIn />} />
-        <Route path="instagram/signUp" element={<SignUp />} />        
+        <Route path="instagram/signUp" element={<SignUp />} />
+        <Route path="instagram/home" element={<Home />} />        
       </Routes>
     </BrowserRouter>
   )
