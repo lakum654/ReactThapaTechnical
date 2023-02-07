@@ -16,9 +16,11 @@ const ToDoList = () => {
     // Set ID For Unique Record
     formData['id'] = (savedData.length+1);
     // Set New Data With Old Data In Local Storage
-    localStorage.setItem('item',JSON.stringify([formData,...savedData]))
+    let allData = JSON.stringify([formData,...savedData]);
+    localStorage.setItem('item',allData)
     //Set In State For Display Purpose
-    setSaveData(JSON.parse(localStorage.getItem('item')));
+    let localStorageData = JSON.parse(localStorage.getItem('item'));
+    setSaveData(localStorageData);
     // Reset Item Name Field
     resetField('item');
    }
@@ -32,6 +34,13 @@ const ToDoList = () => {
       // Reset and SAVE Delete Items Back LocalStorage 
       localStorage.setItem('item',JSON.stringify(newItems))
       // Reset Back New Data In State
+      setSaveData(JSON.parse(localStorage.getItem('item')));
+   }
+
+  //  Remove All Items from list
+   const checkList = () => {
+      localStorage.removeItem('item');
+      localStorage.setItem('item',JSON.stringify([]))
       setSaveData(JSON.parse(localStorage.getItem('item')));
    }
   return (
@@ -71,6 +80,10 @@ const ToDoList = () => {
                 })
               }
             </ul>
+
+            <div className="mt-2">
+                <button type="button" className="btn btn-outline btn-outline-danger rounded-0" onClick={() => checkList()}>CHECK LIST</button>
+            </div>
           </div>
         </div>
       </div>
