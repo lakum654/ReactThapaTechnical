@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import useExternalScripts from '../useExternalScripts';
+import Custom from './js/script';
 
-const Home = () => {
+const Home = () => {           
     const [Auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
     return (
         <div>
