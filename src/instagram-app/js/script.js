@@ -45,10 +45,17 @@ $(document).on('click','.header__theme-button',function() {
 
 // Scrolling stories content
 $(document).on('click','.stories__left-button',function() {
-  $('.stories__content').scrollLeft -= 320;
+  // $('.stories__content').scrollLeft(320);
+   var leftPos = $('.stories__content').scrollLeft();
+   $(".stories__content").animate({scrollLeft: leftPos - 200}, 100);
+
 });
 
 $(document).on('click','.stories__right-button',function() {
-  $('.stories__content').scrollLeft += 320;  
+  var leftPos = $('.stories__content').scrollLeft();
+  $(".stories__content").animate({scrollLeft: leftPos + 200}, 100);
 });
+
+
+
 
