@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './css/style.css';
+import './css/auth.css';
 import { Link, useNavigate, redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 

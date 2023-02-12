@@ -6,6 +6,7 @@ import ToDoList from "./ToDoList/ToDoList"
 import SignIn from "./instagram-app/SignIn";
 import SignUp from "./instagram-app/SignUp";
 import Home from "./instagram-app/Home";
+import UseRef from "./useRef/UseRef";
 
 
 
@@ -18,6 +19,9 @@ const App = () => {
         <Route path="resturant" element={<Restaurant />} />
         <Route path="useState" element={<UseState />} />
         <Route path="useReducer" element={<UseReducer />} />
+        <Route path="useRef" element={<UseRef />} />        
+        <Route path="useRef" element={<UseRef />} />        
+        <Route path="useRef" element={<UseRef />} />        
         <Route path="toDoList" element={<ToDoList />} />
         <Route path="instagram/signIn" element={<SignIn />} />
         <Route path="instagram/signUp" element={<SignUp />} />
@@ -38,8 +42,9 @@ const Index = () => {
         <li class="list-group-item"><Link to="/resturant" className="nav-link text-orange">1. Restaurant Menu 😄</Link></li>
         <li class="list-group-item"><Link to="/useState" className="nav-link text-orange">2. Use State & Use Effect 😀</Link></li>
         <li class="list-group-item"><Link to="/useReducer" className="nav-link text-orange">3. Use Reducer 😀</Link></li>
-        <li class="list-group-item"><Link to="/toDoList" className="nav-link text-orange">4. To Do List 😇</Link></li>
-        <li class="list-group-item"><Link to="/instagram/signIn" className="nav-link text-orange">5. Instagram 😇</Link></li>
+        <li class="list-group-item"><Link to="/useRef" className="nav-link text-orange">4. Use Ref 😇</Link></li>
+        <li class="list-group-item"><Link to="/toDoList" className="nav-link text-orange">5. To Do List 😇</Link></li>
+        <li class="list-group-item"><Link to="/instagram/signIn" className="nav-link text-orange">6. Instagram 😇</Link></li>
       </ul>
     </div>
 
