@@ -3,18 +3,12 @@ import useExternalScripts from '../useExternalScripts';
 import Custom from './js/script';
 import './css/style.css';
 import $ from 'jquery';
+import { Link } from 'react-router-dom';
 const Home = () => {  
-  
   const [Auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
   const [leftStyle,setLeftStyle] = useState({})
   const [rightStyle,setRightStyle] = useState({});
-  const toggleThemeBtn = document.querySelector('.header__theme-button');
   const storiesContent = document.querySelector('.stories__content');
-  const storiesLeftButton = document.querySelector('.stories__left-button');
-  const storiesRightButton = document.querySelector('.stories__right-button');
-  const posts = document.querySelectorAll('.post');
-  const postsContent = document.querySelectorAll('.post__content');
-
     useEffect(() => {
       if (window.matchMedia('(min-width: 1024px)').matches) {
         // Observer to hide buttons when necessary
@@ -60,7 +54,7 @@ const Navabar = () => {
       <header className="header">
       <nav className="header__content">
         <div className="header__buttons">
-          <a href="index.html" className="header__home">
+          <Link href="index.html" className="header__home">
             <svg
               width="104"
               height="30"
@@ -75,7 +69,7 @@ const Navabar = () => {
                 fill="var(--text-dark)"
               />
             </svg>
-          </a>
+          </Link>
 
           <button className="header__theme-button" title="Toggle Theme">
             <svg
@@ -127,7 +121,7 @@ const Navabar = () => {
         </div>
 
         <div className="header__buttons header__buttons--mobile">
-          <a href="#">
+          <Link to="#">
             <svg
               width="24"
               height="24"
@@ -163,8 +157,8 @@ const Navabar = () => {
                 strokeLinecap="round"
               />
             </svg>
-          </a>
-          <a href="#">
+          </Link>
+          <Link to="#">
             <svg
               width="24"
               height="24"
@@ -179,8 +173,8 @@ const Navabar = () => {
                 strokeWidth="0.6"
               />
             </svg>
-          </a>
-          <a href="#">
+          </Link>
+          <Link to="#">
             <svg
               width="24"
               height="24"
@@ -199,11 +193,11 @@ const Navabar = () => {
                 fill="var(--text-dark)"
               />
             </svg>
-          </a>
+          </Link>
         </div>
 
         <div className="header__buttons header__buttons--desktop">
-          <a href="#">
+          <Link to="#">
             <svg
               width="24"
               height="24"
@@ -217,8 +211,8 @@ const Navabar = () => {
                 strokeWidth="2"
               />
             </svg>
-          </a>
-          <a href="#">
+          </Link>
+          <Link to="#">
             <svg
               width="24"
               height="24"
@@ -237,8 +231,8 @@ const Navabar = () => {
                 fill="var(--text-dark)"
               />
             </svg>
-          </a>
-          <a href="#">
+          </Link>
+          <Link to="#">
             <svg
               width="24"
               height="24"
@@ -275,8 +269,8 @@ const Navabar = () => {
                 fill="var(--text-dark)"
               />
             </svg>
-          </a>
-          <a href="#">
+          </Link>
+          <Link to="#">
             <svg
               width="24"
               height="24"
@@ -291,7 +285,7 @@ const Navabar = () => {
                 strokeWidth="0.6"
               />
             </svg>
-          </a>
+          </Link>
           <button className="profile-button">
             <div className="profile-button__border"></div>
             <div className="profile-button__picture">
@@ -609,19 +603,18 @@ const Posts = () => {
             <article className="post">
               <div className="post__header">
                 <div className="post__profile">
-                  <a
+                  <Link
                     href="https://github.com/leocosta1"
                     target="_blank"
                     className="post__avatar"
                   >
                     <img src="assets/default-user.png" alt="User Picture" />
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="https://github.com/leocosta1"
                     target="_blank"
                     className="post__user"
-                    >leocosta1</a
-                  >
+                    >leocosta1</Link>
                 </div>
 
                 <button className="post__more-options">
@@ -736,25 +729,24 @@ const Posts = () => {
 
                 <div className="post__infos">
                   <div className="post__likes">
-                    <a href="#" className="post__likes-avatar">
+                    <Link to="#" className="post__likes-avatar">
                       <img src="assets/default-user.png" alt="User Picture" />
-                    </a>
+                    </Link>
 
                     <span
                       >Liked by
-                      <a className="post__name--underline" href="#">user123</a> and
-                      <a href="#">73 others</a></span
+                      <Link className="post__name--underline" to="#">user123</Link> and
+                      <Link to="#">73 others</Link></span
                     >
                   </div>
 
                   <div className="post__description">
                     <span>
-                      <a
+                      <Link
                         className="post__name--underline"
                         href="https://github.com/leocosta1"
-                        target="_blank"
-                        >leocosta1</a
-                      >
+                        target="_blank">leocosta1</Link>
+                      
                       Responsive clone of Instagram UI. Made with ❤ for study
                       purposes.
                     </span>
@@ -767,10 +759,10 @@ const Posts = () => {
             <article className="post">
               <div className="post__header">
                 <div className="post__profile">
-                  <a href="#" className="post__avatar">
+                  <Link to="#" className="post__avatar">
                     <img src="assets/default-user.png" alt="User Picture" />
-                  </a>
-                  <a href="#" className="post__user">usernick1</a>
+                  </Link>
+                  <Link to="#" className="post__user">usernick1</Link>
                 </div>
 
                 <button className="post__more-options">
@@ -895,20 +887,20 @@ const Posts = () => {
 
                 <div className="post__infos">
                   <div className="post__likes">
-                    <a href="#" className="post__likes-avatar">
+                    <Link to="#" className="post__likes-avatar">
                       <img src="assets/default-user.png" alt="User Picture" />
-                    </a>
+                    </Link>
 
                     <span
                       >Liked by
-                      <a className="post__name--underline" href="#">user123</a> and
-                      <a href="#">73 others</a></span
+                      <Link className="post__name--underline" to="#">user123</Link> and
+                      <Link to="#">73 others</Link></span
                     >
                   </div>
 
                   <div className="post__description">
                     <span>
-                      <a className="post__name--underline" href="#">usernick1</a>
+                      <Link className="post__name--underline" to="#">usernick1</Link>
                       Multiple media post example. This post has three images!
                     </span>
                   </div>
@@ -920,10 +912,10 @@ const Posts = () => {
             <article className="post">
               <div className="post__header">
                 <div className="post__profile">
-                  <a href="#" className="post__avatar">
+                  <Link to="#" className="post__avatar">
                     <img src="assets/default-user.png" alt="User Picture" />
-                  </a>
-                  <a href="#" className="post__user">usernick2</a>
+                  </Link>
+                  <Link to="#" className="post__user">usernick2</Link>
                 </div>
 
                 <button className="post__more-options">
@@ -1038,20 +1030,20 @@ const Posts = () => {
 
                 <div className="post__infos">
                   <div className="post__likes">
-                    <a href="#" className="post__likes-avatar">
+                    <Link to="#" className="post__likes-avatar">
                       <img src="assets/default-user.png" alt="User Picture" />
-                    </a>
+                    </Link>
 
                     <span
                       >Liked by
-                      <a className="post__name--underline" href="#">user123</a> and
-                      <a href="#">73 others</a></span
+                      <Link className="post__name--underline" to="#">user123</Link> and
+                      <Link to="#">73 others</Link></span
                     >
                   </div>
 
                   <div className="post__description">
                     <span>
-                      <a className="post__name--underline" href="#">usernick2</a>
+                      <Link className="post__name--underline" to="#">usernick2</Link>
                       Single media post example.
                     </span>
                   </div>
@@ -1063,10 +1055,10 @@ const Posts = () => {
             <article className="post">
               <div className="post__header">
                 <div className="post__profile">
-                  <a href="#" className="post__avatar">
+                  <Link to="#" className="post__avatar">
                     <img src="assets/default-user.png" alt="User Picture" />
-                  </a>
-                  <a href="#" className="post__user">usernick3</a>
+                  </Link>
+                  <Link to="#" className="post__user">usernick3</Link>
                 </div>
 
                 <button className="post__more-options">
@@ -1196,20 +1188,20 @@ const Posts = () => {
 
                 <div className="post__infos">
                   <div className="post__likes">
-                    <a href="#" className="post__likes-avatar">
+                    <Link to="#" className="post__likes-avatar">
                       <img src="assets/default-user.png" alt="User Picture" />
-                    </a>
+                    </Link>
 
                     <span
                       >Liked by
-                      <a className="post__name--underline" href="#">user123</a> and
-                      <a href="#">73 others</a></span
+                      <Link className="post__name--underline" to="#">user123</Link> and
+                      <Link to="#">73 others</Link></span
                     >
                   </div>
 
                   <div className="post__description">
                     <span>
-                      <a className="post__name--underline" href="#">usernick3</a>
+                      <Link className="post__name--underline" to="#">usernick3</Link>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Similique laudantium consequuntur vitae impedit eaque?
                       Accusantium rerum vel ducimus perspiciatis nesciunt a
@@ -1225,10 +1217,10 @@ const Posts = () => {
             <article className="post">
               <div className="post__header">
                 <div className="post__profile">
-                  <a href="#" className="post__avatar">
+                  <Link to="#" className="post__avatar">
                     <img src="assets/default-user.png" alt="User Picture" />
-                  </a>
-                  <a href="#" className="post__user">usernick4</a>
+                  </Link>
+                  <Link to="#" className="post__user">usernick4</Link>
                 </div>
 
                 <button className="post__more-options">
@@ -1348,20 +1340,19 @@ const Posts = () => {
 
                 <div className="post__infos">
                   <div className="post__likes">
-                    <a href="#" className="post__likes-avatar">
+                    <Link to="#" className="post__likes-avatar">
                       <img src="assets/default-user.png" alt="User Picture" />
-                    </a>
+                    </Link>
 
                     <span
                       >Liked by
-                      <a className="post__name--underline" href="#">user123</a> and
-                      <a href="#">73 others</a></span
-                    >
+                      <Link className="post__name--underline" to="#">user123</Link> and
+                      <Link to="#">73 others</Link></span>
                   </div>
 
                   <div className="post__description">
                     <span>
-                      <a className="post__name--underline" href="#">usernick4</a>
+                      <Link className="post__name--underline" to="#">usernick4</Link>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Ducimus voluptates expedita ab vel dolore voluptatem rerum
                       repudiandae unde temporibus sed quos quis illo, dolores
@@ -1387,17 +1378,17 @@ const Main = ({leftStyle,rightStyle}) => {
 
         <section className="side-menu">
           <div className="side-menu__user-profile">
-            <a
+            <Link
               href="https://github.com/leocosta1"
               target="_blank"
               className="side-menu__user-avatar"
             >
               <img src="assets/default-user.png" alt="User Picture" />
-            </a>
+            </Link>
             <div className="side-menu__user-info">
-              <a href="https://github.com/leocosta1" target="_blank"
-                >leocosta1</a
-              >
+              <Link href="https://github.com/leocosta1" target="_blank"
+                >leocosta1</Link>
+              />
               <span>Leonardo Costa</span>
             </div>
             <button className="side-menu__user-button">Switch</button>
@@ -1410,51 +1401,51 @@ const Main = ({leftStyle,rightStyle}) => {
             </div>
             <div className="side-menu__suggestions-content">
               <div className="side-menu__suggestion">
-                <a href="#" className="side-menu__suggestion-avatar">
+                <Link to="#" className="side-menu__suggestion-avatar">
                   <img src="assets/default-user.png" alt="User Picture" />
-                </a>
+                </Link>
                 <div className="side-menu__suggestion-info">
-                  <a href="#">usernick16</a>
+                  <Link to="#">usernick16</Link>
                   <span>Followed by user1, user2 and 9 others</span>
                 </div>
                 <button className="side-menu__suggestion-button">Follow</button>
               </div>
               <div className="side-menu__suggestion">
-                <a href="#" className="side-menu__suggestion-avatar">
+                <Link to="#" className="side-menu__suggestion-avatar">
                   <img src="assets/default-user.png" alt="User Picture" />
-                </a>
+                </Link>
                 <div className="side-menu__suggestion-info">
-                  <a href="#">usernick17</a>
+                  <Link to="#">usernick17</Link>
                   <span>Followed by user1, user2 and 3 others</span>
                 </div>
                 <button className="side-menu__suggestion-button">Follow</button>
               </div>
               <div className="side-menu__suggestion">
-                <a href="#" className="side-menu__suggestion-avatar">
+                <Link to="#" className="side-menu__suggestion-avatar">
                   <img src="assets/default-user.png" alt="User Picture" />
-                </a>
+                </Link>
                 <div className="side-menu__suggestion-info">
-                  <a href="#">usernick18</a>
+                  <Link to="#">usernick18</Link>
                   <span>Followed by user1 and 9 others</span>
                 </div>
                 <button className="side-menu__suggestion-button">Follow</button>
               </div>
               <div className="side-menu__suggestion">
-                <a href="#" className="side-menu__suggestion-avatar">
+                <Link to="#" className="side-menu__suggestion-avatar">
                   <img src="assets/default-user.png" alt="User Picture" />
-                </a>
+                </Link>
                 <div className="side-menu__suggestion-info">
-                  <a href="#">usernick19</a>
+                  <Link to="#">usernick19</Link>
                   <span>Followed by user1 and 3 others</span>
                 </div>
                 <button className="side-menu__suggestion-button">Follow</button>
               </div>
               <div className="side-menu__suggestion">
-                <a href="#" className="side-menu__suggestion-avatar">
+                <Link to="#" className="side-menu__suggestion-avatar">
                   <img src="assets/default-user.png" alt="User Picture" />
-                </a>
+                </Link>
                 <div className="side-menu__suggestion-info">
-                  <a href="#">usernick20</a>
+                  <Link to="#">usernick20</Link>
                   <span>Followed by user1 and 6 others</span>
                 </div>
                 <button className="side-menu__suggestion-button">Follow</button>
@@ -1466,37 +1457,37 @@ const Main = ({leftStyle,rightStyle}) => {
             <div className="side-menu__footer-links">
               <ul className="side-menu__footer-list">
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">About</a>
+                  <Link className="side-menu__footer-link" to="#">About</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Help</a>
+                  <Link className="side-menu__footer-link" to="#">Help</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Press</a>
+                  <Link className="side-menu__footer-link" to="#">Press</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">API</a>
+                  <Link className="side-menu__footer-link" to="#">API</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Jobs</a>
+                  <Link className="side-menu__footer-link" to="#">Jobs</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Privacy</a>
+                  <Link className="side-menu__footer-link" to="#">Privacy</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Terms</a>
+                  <Link className="side-menu__footer-link" to="#">Terms</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Locations</a>
+                  <Link className="side-menu__footer-link" to="#">Locations</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Top Accounts</a>
+                  <Link className="side-menu__footer-link" to="#">Top Accounts</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Hashtag</a>
+                  <Link className="side-menu__footer-link" to="#">Hashtag</Link>
                 </li>
                 <li className="side-menu__footer-item">
-                  <a className="side-menu__footer-link" href="#">Language</a>
+                  <Link className="side-menu__footer-link" to="#">Language</Link>
                 </li>
               </ul>
             </div>
@@ -1514,7 +1505,7 @@ const Main = ({leftStyle,rightStyle}) => {
 const Footer = () => {
     return (<>
             <nav className="navbar">
-      <a href="#" className="navbar__button">
+      <Link to="#" className="navbar__button">
         <svg
           width="24"
           height="24"
@@ -1528,8 +1519,8 @@ const Footer = () => {
             strokeWidth="2"
           />
         </svg>
-      </a>
-      <a href="#" className="navbar__button">
+      </Link>
+      <Link to="#" className="navbar__button">
         <svg
           width="24"
           height="24"
@@ -1547,8 +1538,8 @@ const Footer = () => {
             strokeLinejoin="round"
           />
         </svg>
-      </a>
-      <a href="#" className="navbar__button">
+      </Link>
+      <Link to="#" className="navbar__button">
         <svg
           width="24"
           height="24"
@@ -1585,8 +1576,8 @@ const Footer = () => {
             fill="var(--text-dark)"
           />
         </svg>
-      </a>
-      <a href="#" className="navbar__button">
+      </Link>
+      <Link to="#" className="navbar__button">
         <svg
           width="24"
           height="24"
@@ -1613,7 +1604,7 @@ const Footer = () => {
             fill="var(--text-dark)"
           />
         </svg>
-      </a>
+      </Link>
       <button className="navbar__button profile-button">
         <div className="profile-button__border"></div>
         <div className="profile-button__picture">

@@ -6,6 +6,7 @@ const storiesRightButton = document.querySelector('.stories__right-button');
 const posts = document.querySelectorAll('.post');
 const postsContent = document.querySelectorAll('.post__content');
 
+console.table(postsContent)
 // ===================================
 // DARK/LIGHT THEME
 // Set initial theme from LocalStorage
