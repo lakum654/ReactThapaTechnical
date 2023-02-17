@@ -52,9 +52,10 @@ textarea {
 /* General Styles */
 body {
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
-  overflow-y: auto;  
+  overflow-y: auto;
 }
 
 svg {
@@ -277,7 +278,7 @@ img {
 .post__right-button {
   width: 24px;
   height: 24px;
-  display: block;
+  /* display: none; */
 
   background-color: transparent;
   border: none;

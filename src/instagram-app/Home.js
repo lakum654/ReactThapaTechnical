@@ -1,14 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useExternalScripts from '../useExternalScripts';
 import Custom from './js/script';
 import './css/style.css';
+import $ from 'jquery';
+const Home = () => {  
+  
+  const [Auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
+  const [leftStyle,setLeftStyle] = useState({})
+  const [rightStyle,setRightStyle] = useState({});
+  const toggleThemeBtn = document.querySelector('.header__theme-button');
+  const storiesContent = document.querySelector('.stories__content');
+  const storiesLeftButton = document.querySelector('.stories__left-button');
+  const storiesRightButton = document.querySelector('.stories__right-button');
+  const posts = document.querySelectorAll('.post');
+  const postsContent = document.querySelectorAll('.post__content');
 
-const Home = () => {           
-    const [Auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
+    useEffect(() => {
+      if (window.matchMedia('(min-width: 1024px)').matches) {
+        // Observer to hide buttons when necessary
+        const storiesObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach((entry) => {
+              if (entry.target === document.querySelector('.story:first-child')) {
+                  if(entry.isIntersecting) {
+                    setLeftStyle({display: "none"});
+                  } else {
+                    setLeftStyle({display: "unset"});
+                  }
+              } else if (entry.target === document.querySelector('.story:last-child')) {
+                if(entry.isIntersecting) {
+                  setRightStyle({display: "none"});
+              } else {
+                    setRightStyle({display: "unset"});
+              }
+              }
+            });
+          },
+          { root: storiesContent, threshold: 1 }
+        );
+      
+        // Calling the observer with the first and last stories
+        storiesObserver.observe(document.querySelector('.story:first-child'));
+        storiesObserver.observe(document.querySelector('.story:last-child'));
+      }
+    },[])
+        
     return (
         <>
-            <Navabar />
-            <Main/>
+            <Navabar/>
+            <Main leftStyle={leftStyle} rightStyle={rightStyle}/>
             <Footer/>
         </>
     )
@@ -265,303 +305,307 @@ const Navabar = () => {
     </>)
 }
 
-const Main = () => {
-    return (<>
-                    <main className="main-container">
-      <section className="content-container">
-        <div className="content">
-          <div className="stories">
-            <button className="stories__left-button">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path
-                  fill="#fff"
-                  d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"
-                ></path>
-              </svg>
-            </button>
-            <div className="stories__content">
-              <button className="story story--has-story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
+const Stories = ({leftStyle,rightStyle}) => {
+  return (
+    <>
+        <div className="stories">
+        <button className="stories__left-button" style={leftStyle}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              fill="#fff"
+              d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"
+            ></path>
+          </svg>
+        </button>
+        <div className="stories__content">
+          <button className="story story--has-story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                  <defs>
+                    <linearGradient
+                      y2="0"
+                      x2="1"
+                      y1="1"
+                      x1="0"
+                      id="--story-gradient"
                     >
-                      <circle r="31" cy="32" cx="32" />
-                      <defs>
-                        <linearGradient
-                          y2="0"
-                          x2="1"
-                          y1="1"
-                          x1="0"
-                          id="--story-gradient"
-                        >
-                          <stop offset="0" stopColor="#f09433" />
-                          <stop offset="0.25" stopColor="#e6683c" />
-                          <stop offset="0.5" stopColor="#dc2743" />
-                          <stop offset="0.75" stopColor="#cc2366" />
-                          <stop offset="1" stopColor="#bc1888" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick1</span>
-              </button>
-              <button className="story story--has-story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick2</span>
-              </button>
-              <button className="story story--has-story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick3</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick4</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick5</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick6</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick7</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick8</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick9</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick10</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick11</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick12</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick13</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick14</span>
-              </button>
-              <button className="story">
-                <div className="story__avatar">
-                  <div className="story__border">
-                    <svg
-                      width="64"
-                      height="64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle r="31" cy="32" cx="32" />
-                    </svg>
-                  </div>
-                  <div className="story__picture">
-                    <img src="assets/default-user.png" alt="User Picture" />
-                  </div>
-                </div>
-                <span className="story__user">usernick15</span>
-              </button>
+                      <stop offset="0" stopColor="#f09433" />
+                      <stop offset="0.25" stopColor="#e6683c" />
+                      <stop offset="0.5" stopColor="#dc2743" />
+                      <stop offset="0.75" stopColor="#cc2366" />
+                      <stop offset="1" stopColor="#bc1888" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
             </div>
-            <button className="stories__right-button">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path
-                  fill="#fff"
-                  d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"
-                ></path>
-              </svg>
-            </button>
-          </div>
+            <span className="story__user">usernick1</span>
+          </button>
+          <button className="story story--has-story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick2</span>
+          </button>
+          <button className="story story--has-story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick3</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick4</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick5</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick6</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick7</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick8</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick9</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick10</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick11</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick12</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick13</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick14</span>
+          </button>
+          <button className="story">
+            <div className="story__avatar">
+              <div className="story__border">
+                <svg
+                  width="64"
+                  height="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle r="31" cy="32" cx="32" />
+                </svg>
+              </div>
+              <div className="story__picture">
+                <img src="assets/default-user.png" alt="User Picture" />
+              </div>
+            </div>
+            <span className="story__user">usernick15</span>
+          </button>
+        </div>
+        <button className="stories__right-button" style={rightStyle}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              fill="#fff"
+              d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"
+            ></path>
+          </svg>
+        </button>
+        </div>
+    </>
+  )
+}
 
-          <div className="posts">
+
+const Posts = () => {
+   return (<>
+      <div className="posts">
             <article className="post">
               <div className="post__header">
                 <div className="post__profile">
@@ -1330,6 +1374,15 @@ const Main = () => {
               </div>
             </article>
           </div>
+</>)
+}
+const Main = ({leftStyle,rightStyle}) => {
+    return (<>
+      <main className="main-container">
+      <section className="content-container">
+        <div className="content">
+          <Stories leftStyle={leftStyle} rightStyle={rightStyle}/>
+          <Posts/>
         </div>
 
         <section className="side-menu">
