@@ -41,18 +41,7 @@ let userPosts = [
            profile:'default-user.png'
         },
         liked:[
-            {
-               id:Math.random(),
-               name:'Rohit Kumar',
-               username:'kajalm123',
-               profile:'default-user.png'
-            },
-            {
-               id:Math.random(),
-               name:'Kartik Kumar',
-               username:'kartrjoy',
-               profile:'default-user.png'
-            }
+            
         ],
         postcomments:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus voluptates expedita ab vel dolore voluptatem rerum repudiandae unde temporibus sed quos quis illo, dolores facere officiis autem. Error, non quidem."
         
